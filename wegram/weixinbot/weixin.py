@@ -914,10 +914,20 @@ class WebWeixin(object):
             if retcode == '1100':
                 print '[*] 你在手机上登出了微信，债见'
                 logging.debug('[*] 你在手机上登出了微信，债见')
+                self.forwardToTelegram(_unicode_dict({
+                    'body': '消息转发已经停止，你可能在手机上登出了微信',
+                    'time': time.time(),
+                    'from': 'WeChatForwardBot',
+                }))
                 break
             if retcode == '1101':
                 print '[*] 你在其他地方登录了 WEB 版微信，债见'
                 logging.debug('[*] 你在其他地方登录了 WEB 版微信，债见')
+                self.forwardToTelegram(_unicode_dict({
+                    'body': '消息转发已经停止，你可能在其他地方登录了 WEB 版微信',
+                    'time': time.time(),
+                    'from': 'WeChatForwardBot',
+                }))
                 break
             elif retcode == '0':
                 if selector == '2':
